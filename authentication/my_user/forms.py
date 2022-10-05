@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # IMPORTANT --> To make the email field required, I have changed the email field's blank attribute to False of UserCreationForm.
-# IMPORTANT --> Added 'form-control' class in UserCreationForm.
+# IMPORTANT --> Added 'form-control' class in UserCreationForm and AuthenticationForm.
 class SignupForm(UserCreationForm):
   class Meta:
     model = User
