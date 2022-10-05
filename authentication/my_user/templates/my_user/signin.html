@@ -1,0 +1,57 @@
+{% extends 'my_user/base.html' %}
+{% block tittle %}Sign In Page{% endblock tittle %}
+
+{% block style %}
+  body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: rgb(235, 235, 235)
+  }
+  .tittle{
+    background-color: #168aad;
+  }
+{% endblock style %}
+
+{% block content %}
+  <div class="container">
+    {% comment %} Displaying Messages {% endcomment %}
+    {% if form.non_field_errors %}
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+      </symbol>
+    </svg>
+
+    <div class="alert alert-danger d-flex align-items-center justify-content-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+      <div>
+        {% for i in form.non_field_errors %}
+            {{ i }}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% comment %} Displaying Form {% endcomment %}
+    <div class="row">
+
+      <div class="tittle col-md-4 offset-md-4 fs-5 fw-bold text-center text-light rounded-top p-2">SIGN IN</div>
+
+      <form class="col-md-4 offset-md-4 bg-light rounded-bottom" action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="my-1">
+            {{ field.label_tag }} {{ field }}
+            <span class="inline-error text-danger">{{ field.errors|striptags }}</span>
+          </div>
+        {% endfor %}
+
+        <input class="text-light bg-dark border-0 rounded mt-2 mb-2" type="submit" value="Login">
+        
+        <a href=" {% url 'signup' %} " class="ms-2">Don't have an account?</a>
+      </form>
+
+    </div>
+  </div>
+{% endblock content %}

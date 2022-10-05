@@ -1,0 +1,14 @@
+{% extends 'my_user/base.html' %}
+{% block tittle %}Home Page{% endblock tittle %}
+
+{% block content %}
+  <p class="h4 text-center">This is home page.</p>
+  {% if messages %}
+    {% for i in messages %}
+      <p class="h4 text-center">{{ i }}</p>
+    {% endfor %}
+  {% endif %}
+  <div class="d-flex justify-content-center">
+    <a href=" {% url 'logout' %} ">Logout?</a>
+  </div>
+{% endblock content %}

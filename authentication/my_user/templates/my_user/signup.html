@@ -1,0 +1,54 @@
+{% extends 'my_user/base.html' %}
+{% block tittle %}Sign Up Page{% endblock tittle %}
+
+{% block style %}
+  body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    background-color: rgb(235, 235, 235)
+  }
+{% endblock style %}
+
+{% block content %}
+  <div class="container">
+    {% comment %} Displaying Messages {% endcomment %}
+    {% if messages %}
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
+        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+      </symbol>
+    </svg>
+
+    <div class="alert alert-success d-flex align-items-center justify-content-center" role="alert">
+      <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+      <div>
+        {% for i in messages %}
+            {{ i }}
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% comment %} Displaying Form {% endcomment %}
+    <div class="row">
+
+      <div class="col-md-4 offset-md-4 fs-5 fw-bold text-center text-light bg-info rounded-top p-2">SIGN UP</div>
+
+      <form class="col-md-4 offset-md-4 bg-light rounded-bottom" action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+          <div class="my-1">
+            {{ field.label_tag }} {{ field }}
+            <span class="inline-error text-danger">{{ field.errors|striptags }}</span>
+          </div>
+        {% endfor %}
+
+        <input class="text-light bg-dark border-0 rounded mt-1 mb-2" type="submit" value="Submit">
+        
+        <a href=" {% url 'signin' %} " class="ms-2">Go to Sign In?</a>
+      </form>
+
+    </div>
+  </div>
+{% endblock content %}

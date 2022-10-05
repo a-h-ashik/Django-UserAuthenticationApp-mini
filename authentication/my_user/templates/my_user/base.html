@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href=" {% static 'my_user/css/bootstrap.css' %} ">
+  <title>{% block tittle %}{% endblock tittle %}</title>
+  <style> {% block style %}{% endblock style %} </style>
+</head>
+<body>
+  {% block content %}{% endblock content %}
+  <style src=" {% static 'my_user/js/jquery.js' %} "></style>
+  <style src=" {% static 'my_user/js/popper.js' %} "></style>
+  <style src=" {% static 'my_user/js/bootstrap.js' %} "></style>
+</body>
+</html>
